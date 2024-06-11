@@ -42,7 +42,7 @@ for i in range(1, page_count - 1):  # Start fra side 2 og fortsæt
 tasks["Download PDF"] = (None, None)  # Ingen sider at vise for download
 
 # Angiv stien til dit baggrundsbillede
-background_image_path = "C:/Users/andly/OneDrive/Desktop_Lenovo/Dokumentationsopgave/streamlit-web/bg.png"
+background_image_path = "streamlit-web/bg.png"
 
 # Læs baggrundsbilledet og konverter det til base64
 with open(background_image_path, "rb") as image_file:
