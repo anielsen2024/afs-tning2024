@@ -1,0 +1,5 @@
+streamlit
+fitz
+PIL
+io
+base64
