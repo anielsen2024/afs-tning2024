@@ -22,7 +22,7 @@ def get_pdf_page_count(pdf_path):
         return len(pdf.pages)
 
 # Angiv PDF-stien
-pdf_path = "/afs-tning2024/streamlit-web/Dokumentationsopgave.pdf"
+pdf_path = "streamlit-web/Dokumentationsopgave.pdf"
 
 # Hent antallet af sider i PDF'en
 page_count = get_pdf_page_count(pdf_path)
