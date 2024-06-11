@@ -1,24 +1,25 @@
 import streamlit as st
-from wand.image import Image as WandImage
-import os
+import pdfplumber
+from PIL import Image
+import io
 
 # Funktion til at udtrække en PDF-side som billede med høj opløsning
-def get_pdf_page_as_image(pdf_path, page_num, resolution=300):
-    with WandImage(filename=pdf_path + "[" + str(page_num) + "]") as img:
-        img.resolution = (resolution, resolution)
-        img.format = "png"
-        return img.make_blob()
+def get_pdf_page_as_image(pdf_path, page_num):
+    with pdfplumber.open(pdf_path) as pdf:
+        page = pdf.pages[page_num]
+        image = page.to_image(resolution=300)  # Juster efter behov
+        return image.original
 
 # Funktion til at vise PDF-sider for en bestemt opgave
 def display_pdf_for_task(pdf_path, start_page, end_page):
     for page_num in range(start_page, end_page + 1):
-        image_bytes = get_pdf_page_as_image(pdf_path, page_num)
-        st.image(image_bytes, use_column_width=True)
+        image = get_pdf_page_as_image(pdf_path, page_num)
+        st.image(image, use_column_width=True)
 
 # Funktion til at finde antal sider i PDF'en
 def get_pdf_page_count(pdf_path):
-    with WandImage(filename=pdf_path) as img:
-        return len(img.sequence)
+    with pdfplumber.open(pdf_path) as pdf:
+        return len(pdf.pages)
 
 # Angiv PDF-stien
 pdf_path = "C:/Users/andly/OneDrive/Desktop_Lenovo/Dokumentationsopgave/Dokumentationsopgave.pdf"
