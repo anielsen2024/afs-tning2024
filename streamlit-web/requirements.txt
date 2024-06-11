@@ -1,5 +1,4 @@
-streamlit
 PyMuPDF==1.20.0
-pilloe
+pillow
 io
 base64
