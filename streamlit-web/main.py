@@ -1,24 +1,24 @@
 import streamlit as st
-from pdf2image import convert_from_path
-from PIL import Image
-import io
-import base64
+from wand.image import Image as WandImage
+import os
 
 # Funktion til at udtrække en PDF-side som billede med høj opløsning
-def get_pdf_page_as_image(pdf_path, page_num, dpi=300):
-    images = convert_from_path(pdf_path, first_page=page_num, last_page=page_num, dpi=dpi)
-    return images[0]
+def get_pdf_page_as_image(pdf_path, page_num, resolution=300):
+    with WandImage(filename=pdf_path + "[" + str(page_num) + "]") as img:
+        img.resolution = (resolution, resolution)
+        img.format = "png"
+        return img.make_blob()
 
 # Funktion til at vise PDF-sider for en bestemt opgave
 def display_pdf_for_task(pdf_path, start_page, end_page):
     for page_num in range(start_page, end_page + 1):
-        image = get_pdf_page_as_image(pdf_path, page_num)
-        st.image(image, use_column_width=True)
+        image_bytes = get_pdf_page_as_image(pdf_path, page_num)
+        st.image(image_bytes, use_column_width=True)
 
 # Funktion til at finde antal sider i PDF'en
 def get_pdf_page_count(pdf_path):
-    images = convert_from_path(pdf_path)
-    return len(images)
+    with WandImage(filename=pdf_path) as img:
+        return len(img.sequence)
 
 # Angiv PDF-stien
 pdf_path = "C:/Users/andly/OneDrive/Desktop_Lenovo/Dokumentationsopgave/Dokumentationsopgave.pdf"
@@ -40,7 +40,7 @@ for i in range(1, page_count - 1):  # Start fra side 2 og fortsæt
 # Tilføj en separat download-sektion
 tasks["Download PDF"] = (None, None)  # Ingen sider at vise for download
 
-# CSS og sidebar
+# Streamlit sidebar til navigation
 st.sidebar.title("Navigér til opgave")
 selected_task = st.sidebar.selectbox("", list(tasks.keys()))
 for i in range(40):
