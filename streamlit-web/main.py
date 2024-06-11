@@ -41,6 +41,98 @@ for i in range(1, page_count - 1):  # Start fra side 2 og fortsæt
 # Tilføj en separat download-sektion
 tasks["Download PDF"] = (None, None)  # Ingen sider at vise for download
 
+# Angiv stien til dit baggrundsbillede
+background_image_path = "C:/Users/andly/OneDrive/Desktop_Lenovo/Dokumentationsopgave/streamlit-web/bg.png"
+
+# Læs baggrundsbilledet og konverter det til base64
+with open(background_image_path, "rb") as image_file:
+    background_image_bytes = image_file.read()
+    background_image_base64 = base64.b64encode(background_image_bytes).decode()
+
+# CSS til at style forsiden med baggrundsbillede og forbedret tekstlæselighed
+st.markdown(
+    f"""
+    <style>
+    .main {{
+        background-image: url('data:image/jpg;base64,{background_image_base64}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }}
+    .header {{
+        text-align: center;
+        color: white;
+        font-size: 50px;
+        font-weight: bold;
+        margin-top: 20%;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+    }}
+    .subheader {{
+        text-align: left;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 10%;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+    }}
+    .description {{
+        text-align: center;
+        color: white;
+        font-size: 24px;
+        font-weight: normal;
+        margin-top: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        border-radius: 10px;
+    }}
+    .description2 {{
+        text-align: left;
+        color: white;
+        font-size: 18px;
+        font-weight: normal;
+        margin-top: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.8);
+        padding: 15px;
+        border-radius: 0px;
+    }}
+    .description3 {{
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        font-weight: normal;
+        margin-top: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px;
+        border-radius: 0px;
+    }}
+    .blurred {{
+        filter: blur(5px);
+    }}
+    .task-header {{
+        text-align: center;
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Streamlit sidebar til navigation
 st.sidebar.title("Navigér til opgave")
 selected_task = st.sidebar.selectbox("", list(tasks.keys()))
