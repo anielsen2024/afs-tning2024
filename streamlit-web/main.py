@@ -143,7 +143,7 @@ st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
 
 # Visning baseret på valgt opgave
 if selected_task == "Forside":
-    st.markdown("<div class='header'>Dokumentaionsopgave Afsætning</div>", unsafe_allow_html=True)
+    st.markdown("<div class='header'>Dokumentationsopgave i Afsætning</div>", unsafe_allow_html=True)
     st.markdown("<div class='description'>Denne applikation præsenterer opgaverne fra PDF'en og giver mulighed for at gennemse dem enkeltvis.</div>", unsafe_allow_html=True)
 elif selected_task == "Download PDF":
     st.markdown(f"<div class='subheader'>Vil du læse opgaven?</div>", unsafe_allow_html=True)
