@@ -2,6 +2,7 @@ import streamlit as st
 import pdfplumber
 from PIL import Image
 import io
+import base64
 
 # Funktion til at udtrække en PDF-side som billede med høj opløsning
 def get_pdf_page_as_image(pdf_path, page_num):
