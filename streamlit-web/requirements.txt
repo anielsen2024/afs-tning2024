@@ -1,4 +1,4 @@
 PyMuPDF==1.20.0
-pillow
+pillow==10.3.0 
 io
 base64
