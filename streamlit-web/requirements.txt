@@ -1,5 +1,5 @@
 streamlit
-PyMuPDF
+PyMuPDF==1.20.0
 pilloe
 io
 base64
