@@ -157,7 +157,7 @@ st.markdown(
 
 # Streamlit sidebar til navigation
 st.sidebar.title("Navigér til opgave")
-selected_task = st.sidebar.selectbox("", list(tasks.keys()))
+selected_task = st.sidebar.selectbox("", [f"Opgave {i}" for i in range(1, 7)] + ["Download Word", "Virtuel Butik"])
 for i in range(40):
     st.sidebar.write("\n")
 st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
@@ -181,13 +181,13 @@ elif selected_task == "Virtuel Butik":
     st.markdown(f"<div class='description2'>Interaktiv visning af den virtuelle butik</div>", unsafe_allow_html=True)
     components.iframe("https://my.matterport.com/show/?m=vq47Jte1ucv", height=600)
 else:
-    task_images = tasks[selected_task]
+    task_number = int(selected_task.split()[1])
+    task_images = tasks[f"Opgave {task_number}"]
     st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
     display_images_for_task(image_folder, task_images)
 
 # Kilder sektion
 with st.expander("Kilder", expanded=False):
-    st.markdown("<div class='description'>Kilder</div>", unsafe_allow_html=True)
     st.markdown(
         """
         <table class="sources-table">
