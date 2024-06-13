@@ -9,9 +9,11 @@ import streamlit.components.v1 as components
 # Funktion til at læse og vise indholdet fra en Word-fil
 def display_word_content(word_path, start_para, end_para):
     doc = Document(word_path)
+    content = ""
     for para_num in range(start_para, end_para + 1):
         if para_num < len(doc.paragraphs):
-            st.write(doc.paragraphs[para_num].text)
+            content += doc.paragraphs[para_num].text + "\n\n"
+    return content
 
 # Funktion til at finde antal paragraffer i Word-filen
 def get_word_para_count(word_path):
@@ -31,12 +33,12 @@ else:
     # Definer opgaverne og deres paragraffer
     tasks = {
         "Forside": (0, 0),  # Forside
-        "Opgave 1": (1, 10),  # Opgave 1: paragraf 1 til 10
-        "Opgave 2": (11, 20),  # Opgave 2: paragraf 11 til 20
-        "Opgave 3": (21, 30),  # Opgave 3: paragraf 21 til 30
-        "Opgave 4": (31, 40),  # Opgave 4: paragraf 31 til 40
-        "Opgave 5": (41, 50),  # Opgave 5: paragraf 41 til 50
-        "Opgave 6": (51, 60),  # Opgave 6: paragraf 51 til 60
+        "Opgave 1: Segmentering og målgruppevalg": (1, 10),  # Opgave 1: paragraf 1 til 10
+        "Opgave 2: Marketingmix": (11, 20),  # Opgave 2: paragraf 11 til 20
+        "Opgave 3: Udbud - Konkurrence": (21, 30),  # Opgave 3: paragraf 21 til 30
+        "Opgave 4: Service og kundebetjening": (31, 40),  # Opgave 4: paragraf 31 til 40
+        "Opgave 5: Forretningsforståelse": (41, 50),  # Opgave 5: paragraf 41 til 50
+        "Opgave 6: Behov og købemotiv": (51, 60),  # Opgave 6: paragraf 51 til 60
     }
 
     # Tilføj en separat download-sektion
@@ -86,7 +88,7 @@ else:
             border-radius: 10px;
         }}
         .description {{
-            text-align: center;
+            text-align: left;
             color: white;
             font-size: 24px;
             font-weight: normal;
@@ -97,7 +99,7 @@ else:
             border-radius: 10px;
         }}
         .description2 {{
-            text-align: center;
+            text-align: left;
             color: white;
             font-size: 18px;
             font-weight: normal;
@@ -164,8 +166,8 @@ else:
     else:
         start_para, end_para = tasks[selected_task]
         st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='description2'>Word-indhold</div>", unsafe_allow_html=True)
-        display_word_content(word_path, start_para, end_para)
+        word_content = display_word_content(word_path, start_para, end_para)
+        st.markdown(f"<div class='description2'>{word_content}</div>", unsafe_allow_html=True)
 
         # Prototype til upload af billeder relateret til opgaven (kun på opgavesider)
         st.markdown(f"<div class='description3'>Vælg et billede til visning</div>", unsafe_allow_html=True)
