@@ -20,12 +20,12 @@ def display_images_for_task(image_folder, task_images):
 
 # Definer opgaverne og deres billeder
 tasks = {
-    "Opgave 1": ["1.jpg", "11.jpg"],
-    "Opgave 2": ["2.jpg"],
-    "Opgave 3": ["3.jpg"],
-    "Opgave 4": ["4.jpg"],
-    "Opgave 5": ["5.jpg"],
-    "Opgave 6": ["6.jpg"],
+    "Segmentering og målgruppevalg": ["1.jpg", "11.jpg"],
+    "Marketingmix": ["2.jpg"],
+    "Udbud - Konkurrence": ["3.jpg"],
+    "Service og kundebetjening": ["4.jpg"],
+    "Forretningsforståelse": ["5.jpg"],
+    "Behov og købemotiv": ["6.jpg"],
 }
 
 # Angiv stien til dit baggrundsbillede
@@ -115,6 +115,37 @@ st.markdown(
         border-radius: 10px;
         margin-bottom: 20px;
     }}
+    .sources-table {{
+        margin: 20px auto;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+    }}
+    .sources-table th, .sources-table td {{
+        color: white;
+        padding: 10px;
+        border: 1px solid white;
+    }}
+    .sources-table th {{
+        text-align: center;
+    }}
+    .sources-table td {{
+        text-align: center;
+    }}
+    .expander {{
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        margin: 20px 0;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        border: 1px solid white;
+    }}
+    .expander > div[role="button"] {{
+        text-align: center;
+        color: white;
+    }}
     </style>
     """,
     unsafe_allow_html=True
@@ -131,6 +162,10 @@ st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
 if selected_task == "Forside":
     st.markdown("<div class='header'>Eksamensopgave i Afsætning</div>", unsafe_allow_html=True)
     st.markdown("<div class='description'>Denne applikation præsenterer opgaverne fra Word-filen og giver mulighed for at gennemse dem enkeltvis.</div>", unsafe_allow_html=True)
+elif selected_task == "Virtuel Butik":
+    st.markdown("<div class='subheader'>Virtuel Butik</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='description2'>Interaktiv visning af den virtuelle butik</div>", unsafe_allow_html=True)
+    components.iframe("https://my.matterport.com/show/?m=vq47Jte1ucv", height=600)
 elif selected_task == "Download Word":
     st.markdown(f"<div class='subheader'>Vil du læse opgaven?</div>", unsafe_allow_html=True)
     word_path = "streamlit-web/Opgave.docx"
@@ -141,10 +176,7 @@ elif selected_task == "Download Word":
             file_name="Opgave.docx",
             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         )
-elif selected_task == "Virtuel Butik":
-    st.markdown("<div class='subheader'>Virtuel Butik</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='description2'>Interaktiv visning af den virtuelle butik</div>", unsafe_allow_html=True)
-    components.iframe("https://my.matterport.com/show/?m=vq47Jte1ucv", height=600)
+
 else:
     task_images = tasks[selected_task]
     st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
@@ -152,33 +184,32 @@ else:
 
 # Kilder sektion per opgave
 sources = {
-    "Opgave 1": [
+    "Segmentering og målgruppevalg": [
         {"kilde": "Afsætning C, Systime, kapitel 7, side 273", "link": "https://afs-fc-eudeux.systime.dk/"},
         {"kilde": "Afsætning C, Systime, kapitel 7, side 274", "link": "https://afs-fc-eudeux.systime.dk/"},
         {"kilde": "Afsætning C, Systime, kapitel 7, side 275", "link": "https://afs-fc-eudeux.systime.dk/"},
         {"kilde": "Afsætning C, Systime, kapitel 7, side 276", "link": "https://afs-fc-eudeux.systime.dk/"}
     ],
-    "Opgave 2": [
+    "Marketingmix": [
         {"kilde": "Afsætning C, Systime, kapitel 10, side 226", "link": "https://afs-fc-eudeux.systime.dk/"},
         {"kilde": "Afsætning C, Systime, kapitel 10, side 228", "link": "https://afs-fc-eudeux.systime.dk/"},
         {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
     ],
-    "Opgave 3": [
+    "Udbud - Konkurrence": [
         {"kilde": "Afsætning C, Systime, kapitel 9, side 251", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 8, side 241", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 8, side 242", "link": "https://afs-fc-eudeux.systime.dk/"}
+        {"kilde": "Afsætning C, Systime, kapitel 8, side 238", "link": "https://afs-fc-eudeux.systime.dk/"}
     ],
-    "Opgave 4": [
-        {"kilde": "Afsætning C, Systime, kapitel 3, side 265", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 3, side 267", "link": "https://afs-fc-eudeux.systime.dk/"},
+    "Service og kundebetjening": [
+        {"kilde": "Afsætning C, Systime, kapitel 14, side 170", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 14, side 172", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 14, side 148", "link": "https://afs-fc-eudeux.systime.dk/"}
+    ],
+    "Forretningsforståelse": [
+        {"kilde": "Afsætning C, Systime, kapitel 1, side 133", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 2, side 260", "link": "https://afs-fc-eudeux.systime.dk/"},
         {"kilde": "Afsætning C, Systime, kapitel 3, side 268", "link": "https://afs-fc-eudeux.systime.dk/"}
     ],
-    "Opgave 5": [
-        {"kilde": "Afsætning C, Systime, kapitel 5, side 291", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 5, side 292", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 5, side 293", "link": "https://afs-fc-eudeux.systime.dk/"}
-    ],
-    "Opgave 6": [
+    "Behov og købemotiv": [
         {"kilde": "Afsætning C, Systime, kapitel 8, side 243", "link": "https://afs-fc-eudeux.systime.dk/"},
         {"kilde": "Afsætning C, Systime, kapitel 8, side 245", "link": "https://afs-fc-eudeux.systime.dk/"},
         {"kilde": "Afsætning C, Systime, kapitel 8, side 246", "link": "https://afs-fc-eudeux.systime.dk/"}
@@ -189,4 +220,8 @@ if selected_task in sources:
     with st.expander(f":notebook: Kilder til {selected_task} :notebook:", expanded=False):
         sources_for_task = sources[selected_task]
         df_sources = pd.DataFrame(sources_for_task)
-        st.table(df_sources)
+        # Create a markdown table with clickable links
+        table_markdown = "| Kilde | Link |\n|:------|:-----|\n"
+        for _, row in df_sources.iterrows():
+            table_markdown += f"| {row['kilde']} | [Læs mere]({row['link']}) |\n"
+        st.markdown(table_markdown)
