@@ -1,24 +1,21 @@
 import streamlit as st
 from docx import Document
-from PIL import Image, ImageDraw
-import base64
 import os
 import streamlit.components.v1 as components
-import tempfile
 
-# Funktion til at konvertere en Word-fil til billeder af hver side
-def convert_word_to_images(word_path):
+# Funktion til at læse og vise indholdet fra en Word-fil
+def display_word_content(word_path, start_para, end_para):
     doc = Document(word_path)
-    with tempfile.TemporaryDirectory() as tempdir:
-        image_paths = []
-        for i, paragraph in enumerate(doc.paragraphs):
-            img_path = os.path.join(tempdir, f"page_{i}.png")
-            img = Image.new('RGB', (800, 600), color=(255, 255, 255))
-            d = ImageDraw.Draw(img)
-            d.text((10, 10), paragraph.text, fill=(0, 0, 0))
-            img.save(img_path)
-            image_paths.append(img_path)
-        return image_paths
+    content = ""
+    for para_num in range(start_para, end_para + 1):
+        if para_num < len(doc.paragraphs):
+            content += doc.paragraphs[para_num].text + "\n\n"
+    return content
+
+# Funktion til at finde antal paragraffer i Word-filen
+def get_word_para_count(word_path):
+    doc = Document(word_path)
+    return len(doc.paragraphs)
 
 # Angiv Word-filens sti
 word_path = "streamlit-web/Opgave.docx"
@@ -27,25 +24,24 @@ word_path = "streamlit-web/Opgave.docx"
 if not os.path.exists(word_path):
     st.error(f"Filen {word_path} blev ikke fundet.")
 else:
-    # Konverter Word-dokumentet til billeder
-    image_paths = convert_word_to_images(word_path)
+    # Hent antallet af paragraffer i Word-filen
+    para_count = get_word_para_count(word_path)
 
     # Definer opgaverne og deres paragraffer
     tasks = {
-        "Forside": 0,  # Forside
-        "Opgave 1: Segmentering og målgruppevalg": 1,  # Opgave 1: side 1
-        "Opgave 2: Marketingmix": 2,  # Opgave 2: side 2
-        "Opgave 3: Udbud - Konkurrence": 3,  # Opgave 3: side 3
-        "Opgave 4: Service og kundebetjening": 4,  # Opgave 4: side 4
-        "Opgave 5: Forretningsforståelse": 5,  # Opgave 5: side 5
-        "Opgave 6: Behov og købemotiv": 6,  # Opgave 6: side 6
+        "Opgave 1": (1, 10),  # Opgave 1: paragraf 1 til 20 (juster antal efter behov)
+        "Opgave 2": (11, 20),  # Opgave 2: paragraf 21 til 40
+        "Opgave 3": (21, 30),  # Opgave 3: paragraf 41 til 60
+        "Opgave 4": (31, 40),  # Opgave 4: paragraf 61 til 80
+        "Opgave 5": (41, 50),  # Opgave 5: paragraf 81 til 100
+        "Opgave 6": (51, 60),  # Opgave 6: paragraf 101 til 120
     }
 
     # Tilføj en separat download-sektion
-    tasks["Download Word"] = None  # Ingen paragraffer at vise for download
+    tasks["Download Word"] = (None, None)  # Ingen paragraffer at vise for download
 
     # Tilføj "Virtuel Butik" til navigationen
-    tasks["Virtuel Butik"] = None
+    tasks["Virtuel Butik"] = (None, None)
 
     # Angiv stien til dit baggrundsbillede
     background_image_path = "streamlit-web/bg.png"
@@ -141,7 +137,7 @@ else:
 
     # Streamlit sidebar til navigation
     st.sidebar.title("Navigér til opgave")
-    selected_task = st.sidebar.selectbox("", list(tasks.keys()))
+    selected_task = st.sidebar.selectbox("", [f"Opgave {i}" for i in range(1, len(tasks) + 1)])
     for i in range(40):
         st.sidebar.write("\n")
     st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
@@ -164,9 +160,11 @@ else:
         st.markdown(f"<div class='description2'>Interaktiv visning af den virtuelle butik</div>", unsafe_allow_html=True)
         components.iframe("https://my.matterport.com/show/?m=vq47Jte1ucv", height=600)
     else:
-        page_num = tasks[selected_task]
+        task_number = int(selected_task.split()[1])
+        start_para, end_para = tasks[f"Opgave {task_number}"]
         st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
-        st.image(image_paths[page_num], use_column_width=True)
+        word_content = display_word_content(word_path, start_para, end_para)
+        st.markdown(f"<div class='description2'>{word_content}</div>", unsafe_allow_html=True)
 
         # Prototype til upload af billeder relateret til opgaven (kun på opgavesider)
         st.markdown(f"<div class='description3'>Vælg et billede til visning</div>", unsafe_allow_html=True)
