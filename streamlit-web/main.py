@@ -1,6 +1,6 @@
 import streamlit as st
 from docx import Document
-from PIL import Image
+from PIL import Image, ImageDraw
 import base64
 import os
 import streamlit.components.v1 as components
