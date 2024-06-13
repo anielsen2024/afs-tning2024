@@ -133,15 +133,17 @@ st.markdown(
         text-align: center;
     }}
     .expander {{
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(30, 30, 30, 0.9);
         color: white;
         margin: 20px 0;
         padding: 10px;
         border-radius: 10px;
         text-align: center;
+        border: 1px solid white;
     }}
     .expander > div[role="button"] {{
         text-align: center;
+        color: white;
     }}
     </style>
     """,
