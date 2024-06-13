@@ -121,16 +121,22 @@ st.markdown(
         margin-bottom: 20px;
     }}
     .sources-table {{
-        align: center;
-        margin-top: 20px;
+        margin: 20px auto;
         background: rgba(0, 0, 0, 0.7);
         padding: 10px;
         border-radius: 10px;
+        text-align: center;
     }}
     .sources-table th, .sources-table td {{
         color: white;
         padding: 10px;
         border: 1px solid white;
+    }}
+    .sources-table th {{
+        text-align: center;
+    }}
+    .sources-table td {{
+        text-align: center;
     }}
     </style>
     """,
