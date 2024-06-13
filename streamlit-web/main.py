@@ -153,7 +153,7 @@ st.markdown(
 
 # Streamlit sidebar til navigation
 st.sidebar.title("Navigér til opgave")
-selected_task = st.sidebar.selectbox("", ["-Forside"] + list(tasks.keys()) + ["-Virtuel Butik","-Download Word"])
+selected_task = st.sidebar.selectbox("", ["Forside"] + list(tasks.keys()) + ["Virtuel Butik","Download Word"])
 for i in range(40):
     st.sidebar.write("\n")
 st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
