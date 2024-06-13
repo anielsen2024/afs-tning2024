@@ -27,6 +27,35 @@ tasks = {
     "Opgave 6": ["6.jpg"],
 }
 
+# Definer kilder for hver opgave
+sources = {
+    "Opgave 1": [
+        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
+        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"},
+        {"kilde": "Virtuel Butik", "link": "https://my.matterport.com/show/?m=vq47Jte1ucv"}
+    ],
+    "Opgave 2": [
+        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
+        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
+    ],
+    "Opgave 3": [
+        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
+        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
+    ],
+    "Opgave 4": [
+        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
+        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
+    ],
+    "Opgave 5": [
+        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
+        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
+    ],
+    "Opgave 6": [
+        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
+        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
+    ],
+}
+
 # Angiv stien til dit baggrundsbillede
 background_image_path = "streamlit-web/bg.png"
 
@@ -179,29 +208,12 @@ else:
     task_images = tasks[selected_task]
     st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
     display_images_for_task(image_folder, task_images)
-
-# Kilder sektion
-with st.expander(":notebook: :grey[Kilder] :notebook:", expanded=False):
-    st.markdown(
-        """
-        <table class="sources-table">
-            <tr>
-                <th>Kilde</th>
-                <th>Link</th>
-            </tr>
-            <tr>
-                <td>Afsætning C, Systime</td>
-                <td><a href="https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123" style="color: white;">Læs mere</a></td>
-            </tr>
-            <tr>
-                <td>Meny's hjemmeside</td>
-                <td><a href="https://meny.dk" style="color: white;">Besøg siden</a></td>
-            </tr>
-            <tr>
-                <td>Virtuel Butik</td>
-                <td><a href="https://my.matterport.com/show/?m=vq47Jte1ucv" style="color: white;">Se butikken</a></td>
-            </tr>
-        </table>
-        """,
-        unsafe_allow_html=True
-    )
+    
+    # Kilder sektion for hver opgave
+    if selected_task in sources:
+        with st.expander(f":notebook: Kilder for {selected_task} :notebook:", expanded=False):
+            table_html = "<table class='sources-table'><tr><th>Kilde</th><th>Link</th></tr>"
+            for source in sources[selected_task]:
+                table_html += f"<tr><td>{source['kilde']}</td><td><a href='{source['link']}' style='color: white;'>Læs mere</a></td></tr>"
+            table_html += "</table>"
+            st.markdown(table_html, unsafe_allow_html=True)
