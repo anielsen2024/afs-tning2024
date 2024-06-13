@@ -133,7 +133,7 @@ st.markdown(
         text-align: center;
     }}
     .expander {{
-        background: rgba(30, 30, 30, 0.9);
+        background: rgba(0, 0, 0, 0.6);
         color: white;
         margin: 20px 0;
         padding: 10px;
@@ -181,7 +181,7 @@ else:
     display_images_for_task(image_folder, task_images)
 
 # Kilder sektion
-with st.expander("Kilder", expanded=False):
+with st.expander(":blue[Kilder]", expanded=False):
     st.markdown(
         """
         <table class="sources-table">
