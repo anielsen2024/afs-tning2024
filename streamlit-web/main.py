@@ -19,7 +19,7 @@ def get_word_para_count(word_path):
     return len(doc.paragraphs)
 
 # Angiv Word-filens sti
-word_path = "streamlit-web/opgave.docx"
+word_path = "streamlit-web/Opgave.docx"
 
 # Hent antallet af paragraffer i Word-filen
 para_count = get_word_para_count(word_path)
