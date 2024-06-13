@@ -4,8 +4,6 @@ from PIL import Image
 import base64
 import streamlit.components.v1 as components
 import pandas as pd
-from docx import Document
-import tempfile
 
 hide_menu_style = """
         <style>
@@ -13,6 +11,7 @@ hide_menu_style = """
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
+
 # Angiv stien til billederne
 image_folder = "streamlit-web/png"
 
@@ -154,14 +153,6 @@ st.markdown(
         text-align: center;
         color: white;
     }}
-    .expander-content {{
-        background: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 10px;
-        border-radius: 10px;
-        text-align: left;
-        border: 1px solid white;
-    }}
     </style>
     """,
     unsafe_allow_html=True
@@ -170,6 +161,7 @@ st.markdown(
 # Streamlit sidebar til navigation
 st.sidebar.title("Navigér til opgave")
 selected_task = st.sidebar.selectbox("", ["Forside"] + list(tasks.keys()) + ["Virtuel Butik"])
+
 for i in range(40):
     st.sidebar.write("\n")
 st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
@@ -188,60 +180,83 @@ else:
     display_images_for_task(image_folder, task_images)
     
     # Ekspandere for spørgsmål og svar
-    with st.expander(f"Spørgsmål 1 til {selected_task}"):
-        st.markdown("<div class='expander-content'>Redegør for segmenteringsprocessens 4 trin og hvorfor det er vigtigt at segmentere markedet.</div>", unsafe_allow_html=True)
-        with st.expander("Svar til spørgsmål 1"):
-            st.markdown(
-                """
-                <div class='expander-content'>
-                Segmenteringsprocessen indebærer at opdele markedet i mindre, ensartede grupper, der har fælles karakteristika og behov. Dette er afgørende for at målrette markedsføringen effektivt. Processen omfatter følgende trin:
-                <ol>
-                    <li>Identifikation af segmenteringsvariabler (demografiske, geografiske, psykologiske, adfærdsmæssige).</li>
-                    <li>Udvikling af segmenteringsprofiler.</li>
-                    <li>Evaluering af segmenternes attraktivitet.</li>
-                    <li>Valg af målgruppe.</li>
-                    <li>Udvikling af markedsføringsprogrammer for hver målgruppe.</li>
-                </ol>
-                </div>
-                """, unsafe_allow_html=True)
-    with st.expander(f"Spørgsmål 2 til {selected_task}"):
-        st.markdown("<div class='expander-content'>Vurder også hvilke segmenteringskriterier der vil være relevante for Meny, at segmentere efter, og begrund hvorfor.</div>", unsafe_allow_html=True)
-        with st.expander("Svar til spørgsmål 2"):
-            st.markdown(
-                """
-                <div class='expander-content'>
-                Valget af den rette målgruppe sker gennem evaluering af de identificerede segmenter baseret på størrelse, vækstpotentiale, konkurrenceintensitet og profitabilitet. Det er vigtigt at vælge segmenter, hvor virksomheden har konkurrencemæssige fordele og kan tilbyde en unik værdi.
-                </div>
-                """, unsafe_allow_html=True)
+    if selected_task == "Segmentering og målgruppevalg":
+        with st.expander("Spørgsmål 1: Segmenteringsprocessen"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Redegør for segmenteringsprocessens 4 trin og hvorfor det er vigtigt at segmentere markedet.</div>", unsafe_allow_html=True)
+        with st.expander("Svar til spørgsmål 1: Segmenteringsprocessen"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Segmenteringsprocessen indebærer at opdele markedet i mindre, ensartede grupper, der har fælles karakteristika og behov. Dette er afgørende for at målrette markedsføringen effektivt. Processen omfatter følgende trin:</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>1. Identifikation af segmenteringsvariabler (demografiske, geografiske, psykologiske, adfærdsmæssige).</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>2. Udvikling af segmenteringsprofiler.</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>3. Evaluering af segmenternes attraktivitet.</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>4. Valg af målgruppe.</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>5. Udvikling af markedsføringsprogrammer for hver målgruppe.</div>", unsafe_allow_html=True)
+        with st.expander("Spørgsmål 2: Valg af målgruppe"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Vurder også hvilke segmenteringskriterier der vil være relevante for Meny, at segmentere efter, og begrund hvorfor.</div>", unsafe_allow_html=True)
+        with st.expander("Svar til spørgsmål 2: Valg af målgruppe"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Valget af den rette målgruppe sker gennem evaluering af de identificerede segmenter baseret på størrelse, vækstpotentiale, konkurrenceintensitet og profitabilitet. Det er vigtigt at vælge segmenter, hvor virksomheden har konkurrencemæssige fordele og kan tilbyde en unik værdi.</div>", unsafe_allow_html=True)
+    
+    elif selected_task == "Marketingmix":
+        with st.expander("Spørgsmål 1: Marketingmix"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Beskriv de 4 P’er i marketingmixet for Meny.</div>", unsafe_allow_html=True)
+        with st.expander("Svar til spørgsmål 1: Marketingmix"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Marketingmixet består af 4 P'er: Produkt, Pris, Place (Distribution) og Promotion.</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>1. Produkt: Meny tilbyder et bredt sortiment af dagligvarer.</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>2. Pris: Meny anvender en konkurrencedygtig prissætning.</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>3. Place: Meny er strategisk placeret i byer og større samfund.</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>4. Promotion: Meny bruger forskellige promotionsaktiviteter, herunder reklamer og tilbudsaviser.</div>", unsafe_allow_html=True)
+    
+    elif selected_task == "Udbud - Konkurrence":
+        with st.expander("Spørgsmål 1: Konkurrence"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Analyser konkurrencen på dagligvaremarkedet og Menys position i markedet.</div>", unsafe_allow_html=True)
+        with st.expander("Svar til spørgsmål 1: Konkurrence"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Konkurrencen på dagligvaremarkedet er intens med flere store aktører som Coop, Salling Group og Lidl. Meny positionerer sig som en kvalitetsbutik med et bredt udvalg af varer og god kundeservice.</div>", unsafe_allow_html=True)
+    
+    elif selected_task == "Service og kundebetjening":
+        with st.expander("Spørgsmål 1: Kundeservice"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Beskriv Menys kundeservice og hvordan den kan forbedres.</div>", unsafe_allow_html=True)
+        with st.expander("Svar til spørgsmål 1: Kundeservice"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Meny tilbyder en høj grad af kundeservice gennem veluddannede medarbejdere, personligt engagement og fokus på kundetilfredshed. Forbedringer kan omfatte udvidede åbningstider, flere selvbetjeningskasser og en forbedret online kundeservice.</div>", unsafe_allow_html=True)
+    
+    elif selected_task == "Forretningsforståelse":
+        with st.expander("Spørgsmål 1: Forretningsmodel"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Redegør for Menys forretningsmodel.</div>", unsafe_allow_html=True)
+        with st.expander("Svar til spørgsmål 1: Forretningsmodel"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Menys forretningsmodel bygger på at levere kvalitetsdagligvarer gennem et bredt sortiment, konkurrencedygtige priser og høj kundeservice. De fokuserer på at skabe en god indkøbsoplevelse og opbygge langvarige kunderelationer.</div>", unsafe_allow_html=True)
+    
+    elif selected_task == "Behov og købemotiv":
+        with st.expander("Spørgsmål 1: Købemotiver"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Hvad motiverer forbrugerne til at handle hos Meny?</div>", unsafe_allow_html=True)
+        with st.expander("Svar til spørgsmål 1: Købemotiver"):
+            st.markdown("<div style='background-color: black; color: white; padding: 10px;'>Forbrugerne motiveres til at handle hos Meny på grund af den høje kvalitet af produkter, et bredt sortiment, konkurrencedygtige priser og en god kundeservice. Meny's fokus på at skabe en behagelig indkøbsoplevelse og deres lokale tilstedeværelse spiller også en væsentlig rolle.</div>", unsafe_allow_html=True)
 
     # Kilder sektion per opgave
     sources = {
-        "--Segmentering og målgruppevalg": [
+        "Segmentering og målgruppevalg": [
             {"kilde": "Afsætning C, Systime, kapitel 7, side 273", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 7, side 274", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 7, side 275", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 7, side 276", "link": "https://afs-fc-eudeux.systime.dk/"}
         ],
-        "--Marketingmix": [
+        "Marketingmix": [
             {"kilde": "Afsætning C, Systime, kapitel 10, side 226", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 10, side 228", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
         ],
-        "--Udbud - Konkurrence": [
+        "Udbud - Konkurrence": [
             {"kilde": "Afsætning C, Systime, kapitel 9, side 251", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 8, side 238", "link": "https://afs-fc-eudeux.systime.dk/"}
         ],
-        "--Service og kundebetjening": [
+        "Service og kundebetjening": [
             {"kilde": "Afsætning C, Systime, kapitel 14, side 170", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 14, side 172", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 14, side 148", "link": "https://afs-fc-eudeux.systime.dk/"}
         ],
-        "--Forretningsforståelse": [
+        "Forretningsforståelse": [
             {"kilde": "Afsætning C, Systime, kapitel 1, side 133", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 2, side 260", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 3, side 268", "link": "https://afs-fc-eudeux.systime.dk/"}
         ],
-        "--Behov og købemotiv": [
+        "Behov og købemotiv": [
             {"kilde": "Afsætning C, Systime, kapitel 8, side 243", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 8, side 245", "link": "https://afs-fc-eudeux.systime.dk/"},
             {"kilde": "Afsætning C, Systime, kapitel 8, side 246", "link": "https://afs-fc-eudeux.systime.dk/"}
@@ -258,9 +273,13 @@ else:
                 table_markdown += f"| {row['kilde']} | [Læs mere]({row['link']}) |\n"
             st.markdown(table_markdown)
 
-    # Vis Word-dokumentet i bunden
+    # Vis Word-dokumentet i en expander
+    word_path = "streamlit-web/Opgave.docx"
     with st.expander("Vis Word-dokumentet"):
-        word_path = "streamlit-web/Opgave.docx"
-        doc = Document(word_path)
-        for para in doc.paragraphs:
-            st.markdown(para.text)
+        with open(word_path, "rb") as file:
+            st.download_button(
+                label="Download Word",
+                data=file,
+                file_name="Opgave.docx",
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            )
