@@ -2,6 +2,7 @@ import streamlit as st
 from docx import Document
 import os
 import streamlit.components.v1 as components
+import base64
 
 # Funktion til at læse og vise indholdet fra en Word-fil
 def display_word_content(word_path, start_para, end_para):
