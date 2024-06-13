@@ -19,20 +19,13 @@ def display_images_for_task(image_folder, task_images):
 
 # Definer opgaverne og deres billeder
 tasks = {
-    "Forside": [],
-    "Opgave 1: Segmentering og målgruppevalg": ["1.jpg", "11.jpg"],
-    "Opgave 2: Marketingmix": ["2.jpg"],
-    "Opgave 3: Udbud - Konkurrence": ["3.jpg"],
-    "Opgave 4: Service og kundebetjening": ["4.jpg"],
-    "Opgave 5: Forretningsforståelse": ["5.jpg"],
-    "Opgave 6: Behov og købemotiv": ["6.jpg"],
+    "Opgave 1": ["1.jpg", "11.jpg"],
+    "Opgave 2": ["2.jpg"],
+    "Opgave 3": ["3.jpg"],
+    "Opgave 4": ["4.jpg"],
+    "Opgave 5": ["5.jpg"],
+    "Opgave 6": ["6.jpg"],
 }
-
-# Tilføj en separat download-sektion
-tasks["Download Word"] = None
-
-# Tilføj "Virtuel Butik" til navigationen
-tasks["Virtuel Butik"] = None
 
 # Angiv stien til dit baggrundsbillede
 background_image_path = "streamlit-web/bg.png"
@@ -157,7 +150,7 @@ st.markdown(
 
 # Streamlit sidebar til navigation
 st.sidebar.title("Navigér til opgave")
-selected_task = st.sidebar.selectbox("", [f"Opgave {i}" for i in range(1, 7)] + ["Download Word", "Virtuel Butik"])
+selected_task = st.sidebar.selectbox("", ["Forside"] + list(tasks.keys()) + ["Download Word", "Virtuel Butik"])
 for i in range(40):
     st.sidebar.write("\n")
 st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
@@ -181,8 +174,7 @@ elif selected_task == "Virtuel Butik":
     st.markdown(f"<div class='description2'>Interaktiv visning af den virtuelle butik</div>", unsafe_allow_html=True)
     components.iframe("https://my.matterport.com/show/?m=vq47Jte1ucv", height=600)
 else:
-    task_number = int(selected_task.split()[1])
-    task_images = tasks[f"Opgave {task_number}"]
+    task_images = tasks[selected_task]
     st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
     display_images_for_task(image_folder, task_images)
 
