@@ -121,6 +121,17 @@ st.markdown(
         border-radius: 10px;
         margin-bottom: 20px;
     }}
+    .sources-table {{
+        margin-top: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 10px;
+    }}
+    .sources-table th, .sources-table td {{
+        color: white;
+        padding: 10px;
+        border: 1px solid white;
+    }}
     </style>
     """,
     unsafe_allow_html=True
@@ -156,24 +167,28 @@ else:
     st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
     display_images_for_task(image_folder, task_images)
 
-    # Prototype til upload af billeder relateret til opgaven (kun på opgavesider)
-    st.markdown(f"<div class='description3'>Vælg et billede til visning</div>", unsafe_allow_html=True)
-    uploaded_file = st.file_uploader("", type=['png', 'jpg', 'jpeg'])
-
-    if uploaded_file:
-        image = Image.open(uploaded_file)
-        image_path = f"streamlit-web/uploads/{uploaded_file.name}"
-        os.makedirs(os.path.dirname(image_path), exist_ok=True)
-        image.save(image_path)
-        st.image(image, caption="Relevant billede")
-
-        # Gem filstien til det uploadede billede
-        if "uploaded_images" not in st.session_state:
-            st.session_state["uploaded_images"] = []
-        st.session_state["uploaded_images"].append(image_path)
-
-    # Vis tidligere uploadede billeder
-    if "uploaded_images" in st.session_state:
-        for image_path in st.session_state["uploaded_images"]:
-            image = Image.open(image_path)
-            st.image(image, caption="Tidligere uploadet billede")
+# Kilder sektion
+st.markdown("<div class='description'>Kilder</div>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <table class="sources-table">
+        <tr>
+            <th>Kilde</th>
+            <th>Link</th>
+        </tr>
+        <tr>
+            <td>Afsætning C, Systime</td>
+            <td><a href="https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123" style="color: white;">Læs mere</a></td>
+        </tr>
+        <tr>
+            <td>Meny's hjemmeside</td>
+            <td><a href="https://meny.dk" style="color: white;">Besøg siden</a></td>
+        </tr>
+        <tr>
+            <td>Virtuel Butik</td>
+            <td><a href="https://my.matterport.com/show/?m=vq47Jte1ucv" style="color: white;">Se butikken</a></td>
+        </tr>
+    </table>
+    """,
+    unsafe_allow_html=True
+)
