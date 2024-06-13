@@ -181,7 +181,7 @@ else:
     display_images_for_task(image_folder, task_images)
 
 # Kilder sektion
-with st.expander(":speech_balloon: :rainbow[Kilder] :speech_balloon:", expanded=False):
+with st.expander(":notebook: :rainbow[Kilder] :notebook:", expanded=False):
     st.markdown(
         """
         <table class="sources-table">
