@@ -111,6 +111,7 @@ st.markdown(
         filter: blur(5px);
     }}
     .task-header {{
+        text-align: center;
         color: white;
         font-size: 36px;
         font-weight: bold;
@@ -174,27 +175,28 @@ else:
     display_images_for_task(image_folder, task_images)
 
 # Kilder sektion
-st.markdown("<div class='description'>Kilder</div>", unsafe_allow_html=True)
-st.markdown(
-    """
-    <table class="sources-table">
-        <tr>
-            <th>Kilde</th>
-            <th>Link</th>
-        </tr>
-        <tr>
-            <td>Afsætning C, Systime</td>
-            <td><a href="https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123" style="color: white;">Læs mere</a></td>
-        </tr>
-        <tr>
-            <td>Meny's hjemmeside</td>
-            <td><a href="https://meny.dk" style="color: white;">Besøg siden</a></td>
-        </tr>
-        <tr>
-            <td>Virtuel Butik</td>
-            <td><a href="https://my.matterport.com/show/?m=vq47Jte1ucv" style="color: white;">Se butikken</a></td>
-        </tr>
-    </table>
-    """,
-    unsafe_allow_html=True
-)
+with st.expander("Kilder"):
+    st.markdown("<div class='description'>Kilder</div>", unsafe_allow_html=True)
+    st.markdown(
+        """
+        <table class="sources-table">
+            <tr>
+                <th>Kilde</th>
+                <th>Link</th>
+            </tr>
+            <tr>
+                <td>Afsætning C, Systime</td>
+                <td><a href="https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123" style="color: white;">Læs mere</a></td>
+            </tr>
+            <tr>
+                <td>Meny's hjemmeside</td>
+                <td><a href="https://meny.dk" style="color: white;">Besøg siden</a></td>
+            </tr>
+            <tr>
+                <td>Virtuel Butik</td>
+                <td><a href="https://my.matterport.com/show/?m=vq47Jte1ucv" style="color: white;">Se butikken</a></td>
+            </tr>
+        </table>
+        """,
+        unsafe_allow_html=True
+    )
