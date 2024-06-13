@@ -189,6 +189,19 @@ else:
     st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
     display_images_for_task(image_folder, task_images)
 
+    # Ekspandere til hvert spørgsmål og svar
+    questions = [
+        {"spørgsmål": "Spørgsmål 1", "svar": "Svar til spørgsmål 1."},
+        {"spørgsmål": "Spørgsmål 2", "svar": "Svar til spørgsmål 2."},
+        # Tilføj flere spørgsmål og svar her
+    ]
+
+    for q in questions:
+        with st.expander(f":question: {q['spørgsmål']}"):
+            st.write(q['spørgsmål'])
+        with st.expander(f":bulb: {q['svar']}"):
+            st.write(q['svar'])
+
 # Kilder sektion per opgave
 sources = {
     "Segmentering og målgruppevalg": [
@@ -232,3 +245,14 @@ if selected_task in sources:
         for _, row in df_sources.iterrows():
             table_markdown += f"| {row['kilde']} | [Læs mere]({row['link']}) |\n"
         st.markdown(table_markdown)
+
+# Word dokument ekspander
+with st.expander("Vis Word-dokumentet", expanded=False):
+    word_path = "streamlit-web/Opgave.docx"
+    with open(word_path, "rb") as file:
+        st.download_button(
+            label="Download Word",
+            data=file,
+            file_name="Opgave.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        )
