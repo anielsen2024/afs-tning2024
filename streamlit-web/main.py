@@ -111,7 +111,6 @@ st.markdown(
         filter: blur(5px);
     }}
     .task-header {{
-        text-align: center;
         color: white;
         font-size: 36px;
         font-weight: bold;
