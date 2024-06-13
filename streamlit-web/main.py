@@ -20,12 +20,12 @@ def display_images_for_task(image_folder, task_images):
 
 # Definer opgaverne og deres billeder
 tasks = {
-    "Segmentering og målgruppevalg": ["1.jpg", "11.jpg"],
-    "Marketingmix": ["2.jpg"],
-    "Udbud - Konkurrence": ["3.jpg"],
-    "Service og kundebetjening": ["4.jpg"],
-    "Forretningsforståelse": ["5.jpg"],
-    "Behov og købemotiv": ["6.jpg"],
+    "-Segmentering og målgruppevalg": ["1.jpg", "11.jpg"],
+    "-Marketingmix": ["2.jpg"],
+    "-Udbud - Konkurrence": ["3.jpg"],
+    "-Service og kundebetjening": ["4.jpg"],
+    "-Forretningsforståelse": ["5.jpg"],
+    "-Behov og købemotiv": ["6.jpg"],
 }
 
 # Angiv stien til dit baggrundsbillede
