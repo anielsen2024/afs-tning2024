@@ -39,7 +39,7 @@ tasks = {
 background_image_path = "streamlit-web/bg.png"
 
 # Læs baggrundsbilledet og konverter det til base64
-with open(background_image_path, "rb") as image_file):
+with open(background_image_path, "rb") as image_file:
     background_image_bytes = image_file.read()
     background_image_base64 = base64.b64encode(background_image_bytes).decode()
 
