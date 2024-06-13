@@ -139,6 +139,17 @@ st.markdown(
     .sources-table td {{
         text-align: center;
     }}
+    .expander {{
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        margin: 20px 0;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+    }}
+    .expander > div[role="button"] {{
+        text-align: center;
+    }}
     </style>
     """,
     unsafe_allow_html=True
@@ -175,7 +186,7 @@ else:
     display_images_for_task(image_folder, task_images)
 
 # Kilder sektion
-with st.expander("Kilder"):
+with st.expander("Kilder", expanded=False):
     st.markdown("<div class='description'>Kilder</div>", unsafe_allow_html=True)
     st.markdown(
         """
