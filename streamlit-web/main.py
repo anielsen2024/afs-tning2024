@@ -146,7 +146,7 @@ else:
 
     # Visning baseret på valgt opgave
     if selected_task == "Forside":
-        st.markdown("<div class='header'>Dokumentationsopgave i Afsætning</div>", unsafe_allow_html=True)
+        st.markdown("<div class='header'>Eksamensopgave i Afsætning</div>", unsafe_allow_html=True)
         st.markdown("<div class='description'>Denne applikation præsenterer opgaverne fra Word-filen og giver mulighed for at gennemse dem enkeltvis.</div>", unsafe_allow_html=True)
     elif selected_task == "Download Word":
         st.markdown(f"<div class='subheader'>Vil du læse opgaven?</div>", unsafe_allow_html=True)
