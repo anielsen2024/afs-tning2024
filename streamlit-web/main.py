@@ -27,35 +27,6 @@ tasks = {
     "Opgave 6": ["6.jpg"],
 }
 
-# Definer kilder for hver opgave
-sources = {
-    "Opgave 1": [
-        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
-        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"},
-        {"kilde": "Virtuel Butik", "link": "https://my.matterport.com/show/?m=vq47Jte1ucv"}
-    ],
-    "Opgave 2": [
-        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
-        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
-    ],
-    "Opgave 3": [
-        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
-        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
-    ],
-    "Opgave 4": [
-        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
-        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
-    ],
-    "Opgave 5": [
-        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
-        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
-    ],
-    "Opgave 6": [
-        {"kilde": "Afsætning C, Systime", "link": "https://www.systime.dk/da/afs%C3%A6tning-c-9788757140123"},
-        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
-    ],
-}
-
 # Angiv stien til dit baggrundsbillede
 background_image_path = "streamlit-web/bg.png"
 
@@ -208,12 +179,63 @@ else:
     task_images = tasks[selected_task]
     st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
     display_images_for_task(image_folder, task_images)
-    
-    # Kilder sektion for hver opgave
-    if selected_task in sources:
-        with st.expander(f":notebook: Kilder for {selected_task} :notebook:", expanded=False):
-            table_html = "<table class='sources-table'><tr><th>Kilde</th><th>Link</th></tr>"
-            for source in sources[selected_task]:
-                table_html += f"<tr><td>{source['kilde']}</td><td><a href='{source['link']}' style='color: white;'>Læs mere</a></td></tr>"
-            table_html += "</table>"
-            st.markdown(table_html, unsafe_allow_html=True)
+
+# Kilder sektion per opgave
+sources = {
+    "Opgave 1": [
+        {"kilde": "Afsætning C, Systime, kapitel 7, side 273", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 7, side 274", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 7, side 275", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 7, side 276", "link": "https://afs-fc-eudeux.systime.dk/"}
+    ],
+    "Opgave 2": [
+        {"kilde": "Afsætning C, Systime, kapitel 10, side 226", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 10, side 228", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
+    ],
+    "Opgave 3": [
+        {"kilde": "Afsætning C, Systime, kapitel 9, side 251", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 8, side 241", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 8, side 242", "link": "https://afs-fc-eudeux.systime.dk/"}
+    ],
+    "Opgave 4": [
+        {"kilde": "Afsætning C, Systime, kapitel 3, side 265", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 3, side 267", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 3, side 268", "link": "https://afs-fc-eudeux.systime.dk/"}
+    ],
+    "Opgave 5": [
+        {"kilde": "Afsætning C, Systime, kapitel 5, side 291", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 5, side 292", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 5, side 293", "link": "https://afs-fc-eudeux.systime.dk/"}
+    ],
+    "Opgave 6": [
+        {"kilde": "Afsætning C, Systime, kapitel 8, side 243", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 8, side 245", "link": "https://afs-fc-eudeux.systime.dk/"},
+        {"kilde": "Afsætning C, Systime, kapitel 8, side 246", "link": "https://afs-fc-eudeux.systime.dk/"}
+    ],
+}
+
+if selected_task in sources:
+    with st.expander(f":notebook: Kilder til {selected_task} :notebook:", expanded=False):
+        sources_for_task = sources[selected_task]
+        st.markdown(
+            """
+            <table class="sources-table">
+                <tr>
+                    <th>Kilde</th>
+                    <th>Link</th>
+                </tr>
+            """,
+            unsafe_allow_html=True,
+        )
+        for source in sources_for_task:
+            st.markdown(
+                f"""
+                <tr>
+                    <td>{source['kilde']}</td>
+                    <td><a href="{source['link']}" style="color: white;">Læs mere</a></td>
+                </tr>
+                """,
+                unsafe_allow_html=True,
+            )
+        st.markdown("</table>", unsafe_allow_html=True)
