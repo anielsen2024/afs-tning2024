@@ -2,6 +2,7 @@ import streamlit as st
 from docx import Document
 import os
 import streamlit.components.v1 as components
+from PIL import Image
 import base64
 
 # Funktion til at læse og vise indholdet fra en Word-fil
@@ -30,12 +31,13 @@ else:
 
     # Definer opgaverne og deres paragraffer
     tasks = {
-        "Opgave 1": (1, 10),  # Opgave 1: paragraf 1 til 20 (juster antal efter behov)
-        "Opgave 2": (11, 20),  # Opgave 2: paragraf 21 til 40
-        "Opgave 3": (21, 30),  # Opgave 3: paragraf 41 til 60
-        "Opgave 4": (31, 40),  # Opgave 4: paragraf 61 til 80
-        "Opgave 5": (41, 50),  # Opgave 5: paragraf 81 til 100
-        "Opgave 6": (51, 60),  # Opgave 6: paragraf 101 til 120
+        "Forside": (0, 0),  # Forside
+        "Opgave 1: Segmentering og målgruppevalg": (1, 20),  # Opgave 1: paragraf 1 til 20 (juster antal efter behov)
+        "Opgave 2: Marketingmix": (21, 40),  # Opgave 2: paragraf 21 til 40
+        "Opgave 3: Udbud - Konkurrence": (41, 60),  # Opgave 3: paragraf 41 til 60
+        "Opgave 4: Service og kundebetjening": (61, 80),  # Opgave 4: paragraf 61 til 80
+        "Opgave 5: Forretningsforståelse": (81, 100),  # Opgave 5: paragraf 81 til 100
+        "Opgave 6: Behov og købemotiv": (101, 120),  # Opgave 6: paragraf 101 til 120
     }
 
     # Tilføj en separat download-sektion
@@ -138,7 +140,7 @@ else:
 
     # Streamlit sidebar til navigation
     st.sidebar.title("Navigér til opgave")
-    selected_task = st.sidebar.selectbox("", [f"Opgave {i}" for i in range(1, len(tasks) + 1)])
+    selected_task = st.sidebar.selectbox("", list(tasks.keys()))
     for i in range(40):
         st.sidebar.write("\n")
     st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
@@ -161,8 +163,7 @@ else:
         st.markdown(f"<div class='description2'>Interaktiv visning af den virtuelle butik</div>", unsafe_allow_html=True)
         components.iframe("https://my.matterport.com/show/?m=vq47Jte1ucv", height=600)
     else:
-        task_number = int(selected_task.split()[1])
-        start_para, end_para = tasks[f"Opgave {task_number}"]
+        start_para, end_para = tasks[selected_task]
         st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
         word_content = display_word_content(word_path, start_para, end_para)
         st.markdown(f"<div class='description2'>{word_content}</div>", unsafe_allow_html=True)
