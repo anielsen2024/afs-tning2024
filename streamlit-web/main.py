@@ -181,7 +181,7 @@ else:
     display_images_for_task(image_folder, task_images)
 
 # Kilder sektion
-with st.expander(":blue[Kilder]", expanded=False):
+with st.expander(":rainbow[Kilder]", expanded=False):
     st.markdown(
         """
         <table class="sources-table">
