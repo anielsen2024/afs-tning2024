@@ -233,13 +233,4 @@ if selected_task in sources:
             table_markdown += f"| {row['kilde']} | [Læs mere]({row['link']}) |\n"
         st.markdown(table_markdown)
 
-# Vis Word-dokumentet i en expander
-word_path = "streamlit-web/Opgave.docx"
-with st.expander("Vis Word-dokumentet"):
-    with open(word_path, "rb") as file:
-        st.download_button(
-            label="Download Word",
-            data=file,
-            file_name="Opgave.docx",
-            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        )
+
