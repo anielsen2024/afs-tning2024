@@ -189,57 +189,57 @@ else:
     st.markdown(f"<div class='task-header'>{task_key}</div>", unsafe_allow_html=True)
     display_images_for_task(image_folder, task_images)
 
-# Kilder sektion per opgave
-sources = {
-    "Segmentering og målgruppevalg": [
-        {"kilde": "Afsætning C, Systime, kapitel 7, side 273", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 7, side 274", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 7, side 275", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 7, side 276", "link": "https://afs-fc-eudeux.systime.dk/"}
-    ],
-    "Marketingmix": [
-        {"kilde": "Afsætning C, Systime, kapitel 10, side 226", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 10, side 228", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
-    ],
-    "Udbud - Konkurrence": [
-        {"kilde": "Afsætning C, Systime, kapitel 9, side 251", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 8, side 238", "link": "https://afs-fc-eudeux.systime.dk/"}
-    ],
-    "Service og kundebetjening": [
-        {"kilde": "Afsætning C, Systime, kapitel 14, side 170", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 14, side 172", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 14, side 148", "link": "https://afs-fc-eudeux.systime.dk/"}
-    ],
-    "Forretningsforståelse": [
-        {"kilde": "Afsætning C, Systime, kapitel 1, side 133", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 2, side 260", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 3, side 268", "link": "https://afs-fc-eudeux.systime.dk/"}
-    ],
-    "Behov og købemotiv": [
-        {"kilde": "Afsætning C, Systime, kapitel 8, side 243", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 8, side 245", "link": "https://afs-fc-eudeux.systime.dk/"},
-        {"kilde": "Afsætning C, Systime, kapitel 8, side 246", "link": "https://afs-fc-eudeux.systime.dk/"}
-    ],
-}
+    # Kilder sektion per opgave
+    sources = {
+        "Segmentering og målgruppevalg": [
+            {"kilde": "Afsætning C, Systime, kapitel 7, side 273", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 7, side 274", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 7, side 275", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 7, side 276", "link": "https://afs-fc-eudeux.systime.dk/"}
+        ],
+        "Marketingmix": [
+            {"kilde": "Afsætning C, Systime, kapitel 10, side 226", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 10, side 228", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Meny's hjemmeside", "link": "https://meny.dk"}
+        ],
+        "Udbud - Konkurrence": [
+            {"kilde": "Afsætning C, Systime, kapitel 9, side 251", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 8, side 238", "link": "https://afs-fc-eudeux.systime.dk/"}
+        ],
+        "Service og kundebetjening": [
+            {"kilde": "Afsætning C, Systime, kapitel 14, side 170", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 14, side 172", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 14, side 148", "link": "https://afs-fc-eudeux.systime.dk/"}
+        ],
+        "Forretningsforståelse": [
+            {"kilde": "Afsætning C, Systime, kapitel 1, side 133", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 2, side 260", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 3, side 268", "link": "https://afs-fc-eudeux.systime.dk/"}
+        ],
+        "Behov og købemotiv": [
+            {"kilde": "Afsætning C, Systime, kapitel 8, side 243", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 8, side 245", "link": "https://afs-fc-eudeux.systime.dk/"},
+            {"kilde": "Afsætning C, Systime, kapitel 8, side 246", "link": "https://afs-fc-eudeux.systime.dk/"}
+        ],
+    }
 
-if task_key in sources:
-    with st.expander(f":notebook: Kilder til {task_key} :notebook:", expanded=False):
-        sources_for_task = sources[task_key]
-        df_sources = pd.DataFrame(sources_for_task)
-        # Create a markdown table with clickable links
-        table_markdown = "| Kilde | Link |\n|:------|:-----|\n"
-        for _, row in df_sources.iterrows():
-            table_markdown += f"| {row['kilde']} | [Læs mere]({row['link']}) |\n"
-        st.markdown(table_markdown)
+    if task_key in sources:
+        with st.expander(f":notebook: Kilder til {task_key} :notebook:", expanded=False):
+            sources_for_task = sources[task_key]
+            df_sources = pd.DataFrame(sources_for_task)
+            # Create a markdown table with clickable links
+            table_markdown = "| Kilde | Link |\n|:------|:-----|\n"
+            for _, row in df_sources.iterrows():
+                table_markdown += f"| {row['kilde']} | [Læs mere]({row['link']}) |\n"
+            st.markdown(table_markdown)
 
-# Ekspander for at vise Word-dokumentet
-with st.expander("Vis Word-dokumentet"):
-    word_path = "streamlit-web/Opgave.docx"
-    with open(word_path, "rb") as file:
-        st.download_button(
-            label="Download Word",
-            data=file,
-            file_name="Opgave.docx",
-            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        )
+    # Ekspander for at vise Word-dokumentet
+    with st.expander("Vis Word-dokumentet"):
+        word_path = "streamlit-web/Opgave.docx"
+        with open(word_path, "rb") as file:
+            st.download_button(
+                label="Download Word",
+                data=file,
+                file_name="Opgave.docx",
+                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            )
