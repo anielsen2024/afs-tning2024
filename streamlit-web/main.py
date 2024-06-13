@@ -3,6 +3,7 @@ import os
 from PIL import Image
 import base64
 import streamlit.components.v1 as components
+import pandas as pd
 
 # Angiv stien til billederne
 image_folder = "streamlit-web/png"
@@ -114,37 +115,6 @@ st.markdown(
         border-radius: 10px;
         margin-bottom: 20px;
     }}
-    .sources-table {{
-        margin: 20px auto;
-        background: rgba(0, 0, 0, 0.7);
-        padding: 10px;
-        border-radius: 10px;
-        text-align: center;
-    }}
-    .sources-table th, .sources-table td {{
-        color: white;
-        padding: 10px;
-        border: 1px solid white;
-    }}
-    .sources-table th {{
-        text-align: center;
-    }}
-    .sources-table td {{
-        text-align: center;
-    }}
-    .expander {{
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        margin: 20px 0;
-        padding: 10px;
-        border-radius: 10px;
-        text-align: center;
-        border: 1px solid white;
-    }}
-    .expander > div[role="button"] {{
-        text-align: center;
-        color: white;
-    }}
     </style>
     """,
     unsafe_allow_html=True
@@ -218,24 +188,5 @@ sources = {
 if selected_task in sources:
     with st.expander(f":notebook: Kilder til {selected_task} :notebook:", expanded=False):
         sources_for_task = sources[selected_task]
-        st.markdown(
-            """
-            <table class="sources-table">
-                <tr>
-                    <th>Kilde</th>
-                    <th>Link</th>
-                </tr>
-            """,
-            unsafe_allow_html=True,
-        )
-        for source in sources_for_task:
-            st.markdown(
-                f"""
-                <tr>
-                    <td>{source['kilde']}</td>
-                    <td><a href="{source['link']}" style="color: white;">Læs mere</a></td>
-                </tr>
-                """,
-                unsafe_allow_html=True,
-            )
-        st.markdown("</table>", unsafe_allow_html=True)
+        df_sources = pd.DataFrame(sources_for_task)
+        st.table(df_sources)
