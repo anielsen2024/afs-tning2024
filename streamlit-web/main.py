@@ -8,9 +8,11 @@ import pandas as pd
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
+
 # Angiv stien til billederne
 image_folder = "streamlit-web/png"
 
@@ -26,12 +28,12 @@ def display_images_for_task(image_folder, task_images):
 
 # Definer opgaverne og deres billeder
 tasks = {
-    "--Segmentering og målgruppevalg": ["1.jpg", "11.jpg"],
-    "--Marketingmix": ["2.jpg"],
-    "--Udbud - Konkurrence": ["3.jpg"],
-    "--Service og kundebetjening": ["4.jpg"],
-    "--Forretningsforståelse": ["5.jpg"],
-    "--Behov og købemotiv": ["6.jpg"],
+    "Segmentering og målgruppevalg": ["1.jpg", "11.jpg"],
+    "Marketingmix": ["2.jpg"],
+    "Udbud - Konkurrence": ["3.jpg"],
+    "Service og kundebetjening": ["4.jpg"],
+    "Forretningsforståelse": ["5.jpg"],
+    "Behov og købemotiv": ["6.jpg"],
 }
 
 # Angiv stien til dit baggrundsbillede
@@ -55,9 +57,9 @@ st.markdown(
     .header {{
         text-align: center;
         color: white;
-        font-size: 50px;
+        font-size: 36px;
         font-weight: bold;
-        margin-top: 20%;
+        margin-top: 10%;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         background: rgba(0, 0, 0, 0.7);
         padding: 20px;
@@ -66,9 +68,9 @@ st.markdown(
     .subheader {{
         text-align: center;
         color: white;
-        font-size: 30px;
+        font-size: 24px;
         font-weight: bold;
-        margin-top: 10%;
+        margin-top: 5%;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         background: rgba(0, 0, 0, 0.5);
         padding: 20px;
@@ -77,9 +79,9 @@ st.markdown(
     .description {{
         text-align: left;
         color: white;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: normal;
-        margin-top: 20px;
+        margin-top: 10px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         background: rgba(0, 0, 0, 0.2);
         padding: 20px;
@@ -94,7 +96,7 @@ st.markdown(
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         background: rgba(0, 0, 0, 0.8);
         padding: 15px;
-        border-radius: 0px;
+        border-radius: 10px;
     }}
     .description3 {{
         text-align: center;
@@ -105,7 +107,7 @@ st.markdown(
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         background: rgba(0, 0, 0, 0.7);
         padding: 5px;
-        border-radius: 0px;
+        border-radius: 10px;
     }}
     .blurred {{
         filter: blur(5px);
@@ -113,7 +115,7 @@ st.markdown(
     .task-header {{
         text-align: center;
         color: white;
-        font-size: 36px;
+        font-size: 28px;
         font-weight: bold;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         background: rgba(0, 0, 0, 0.7);
@@ -127,6 +129,7 @@ st.markdown(
         padding: 10px;
         border-radius: 10px;
         text-align: center;
+        max-width: 80%;
     }}
     .sources-table th, .sources-table td {{
         color: white;
@@ -159,9 +162,7 @@ st.markdown(
 
 # Streamlit sidebar til navigation
 st.sidebar.title("Navigér til opgave")
-selected_task = st.sidebar.selectbox("", ["Forside"] + list(tasks.keys()) + ["Virtuel Butik","Download Word"])
-for i in range(40):
-    st.sidebar.write("\n")
+selected_task = st.sidebar.selectbox("", ["Forside"] + list(tasks.keys()) + ["Virtuel Butik", "Download Word"])
 st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
 
 # Visning baseret på valgt opgave
