@@ -122,6 +122,7 @@ st.markdown(
         margin-bottom: 20px;
     }}
     .sources-table {{
+        align: center;
         margin-top: 20px;
         background: rgba(0, 0, 0, 0.7);
         padding: 10px;
