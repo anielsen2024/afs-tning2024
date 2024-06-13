@@ -27,19 +27,19 @@ def display_images_for_task(image_folder, task_images):
 
 # Definer opgaverne og deres billeder
 tasks = {
-    "--Segmentering og målgruppevalg": ["1.jpg", "11.jpg"],
-    "--Marketingmix": ["2.jpg"],
-    "--Udbud - Konkurrence": ["3.jpg"],
-    "--Service og kundebetjening": ["4.jpg"],
-    "--Forretningsforståelse": ["5.jpg"],
-    "--Behov og købemotiv": ["6.jpg"],
+    "Segmentering og målgruppevalg": ["1.jpg", "11.jpg"],
+    "Marketingmix": ["2.jpg"],
+    "Udbud - Konkurrence": ["3.jpg"],
+    "Service og kundebetjening": ["4.jpg"],
+    "Forretningsforståelse": ["5.jpg"],
+    "Behov og købemotiv": ["6.jpg"],
 }
 
 # Angiv stien til dit baggrundsbillede
 background_image_path = "streamlit-web/bg.png"
 
 # Læs baggrundsbilledet og konverter det til base64
-with open(background_image_path, "rb") as image_file:
+with open(background_image_path, "rb") as image_file):
     background_image_bytes = image_file.read()
     background_image_base64 = base64.b64encode(background_image_bytes).decode()
 
@@ -160,7 +160,7 @@ st.markdown(
 
 # Streamlit sidebar til navigation
 st.sidebar.title("Navigér til opgave")
-selected_task = st.sidebar.selectbox("", ["Forside"] + list(tasks.keys()) + ["Virtuel Butik","Download Word"])
+selected_task = st.sidebar.selectbox("", ["Forside"] + [f"--{task}" for task in tasks.keys()] + ["Virtuel Butik", "Download Word"])
 for i in range(40):
     st.sidebar.write("\n")
 st.sidebar.write("© Andreas Lykke Nielsen | Afsætning 2024")
@@ -183,10 +183,10 @@ elif selected_task == "Download Word":
             file_name="Opgave.docx",
             mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         )
-
 else:
-    task_images = tasks[selected_task]
-    st.markdown(f"<div class='task-header'>{selected_task}</div>", unsafe_allow_html=True)
+    task_key = selected_task.lstrip("--")
+    task_images = tasks[task_key]
+    st.markdown(f"<div class='task-header'>{task_key}</div>", unsafe_allow_html=True)
     display_images_for_task(image_folder, task_images)
 
 # Kilder sektion per opgave
@@ -223,9 +223,9 @@ sources = {
     ],
 }
 
-if selected_task in sources:
-    with st.expander(f":notebook: Kilder til {selected_task} :notebook:", expanded=False):
-        sources_for_task = sources[selected_task]
+if task_key in sources:
+    with st.expander(f":notebook: Kilder til {task_key} :notebook:", expanded=False):
+        sources_for_task = sources[task_key]
         df_sources = pd.DataFrame(sources_for_task)
         # Create a markdown table with clickable links
         table_markdown = "| Kilde | Link |\n|:------|:-----|\n"
@@ -233,4 +233,13 @@ if selected_task in sources:
             table_markdown += f"| {row['kilde']} | [Læs mere]({row['link']}) |\n"
         st.markdown(table_markdown)
 
-
+# Ekspander for at vise Word-dokumentet
+with st.expander("Vis Word-dokumentet"):
+    word_path = "streamlit-web/Opgave.docx"
+    with open(word_path, "rb") as file:
+        st.download_button(
+            label="Download Word",
+            data=file,
+            file_name="Opgave.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        )
