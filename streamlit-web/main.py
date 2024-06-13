@@ -5,6 +5,12 @@ import base64
 import streamlit.components.v1 as components
 import pandas as pd
 
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 # Angiv stien til billederne
 image_folder = "streamlit-web/png"
 
